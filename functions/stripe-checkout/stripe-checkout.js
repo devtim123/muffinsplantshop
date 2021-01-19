@@ -1,7 +1,7 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const inventory = require('./data/inventory.json');
-const shippingInventory = require('./data/shipping.json');
-const taxrates = require('./data/taxrates.json');
+const inventory = require('data/inventory.json');
+const shippingInventory = require('data/shipping.json');
+const taxrates = require('data/taxrates.json');
 
 const calculateOrderAmount = (items, shipping, state) => {
     const totalAmount = items.reduce((total, item) => {
@@ -14,6 +14,7 @@ const calculateOrderAmount = (items, shipping, state) => {
     // get shipping price against inventory
     const shippingAmount = 100 * shippingInventory.find((ship_method) => ship_method.shipping_method === shipping).shipping_amount
 
+    console.log(taxrates);
     // get tax rate
     const taxAmount = taxrates.find((tax) => tax.state === state).total_tax_rate
 

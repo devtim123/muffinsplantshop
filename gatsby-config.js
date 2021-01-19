@@ -29,19 +29,14 @@ module.exports = {
     `gatsby-transformer-remark`,
     `gatsby-transformer-json`,
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [
-          {
-            family: `Source Sans Pro`,
-            variants: [`300`, `400`, `500`]
-          },
-          {
-            family: `Montserrat`,
-            variants: [`400`, `500`]
-          },
+          `Montserrat\:400,500`,
+          `Source Sans Pro\:300,400,500` // you can also specify font weights and styles
         ],
-      },
+        display: 'swap'
+      }
     },
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
