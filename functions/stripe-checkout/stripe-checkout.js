@@ -1,7 +1,7 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const inventory = require('data/inventory.json');
-const shippingInventory = require('data/shipping.json');
-const taxrates = require('data/taxrates.json');
+const inventory = require('./data/inventory.json');
+const shippingInventory = require('./data/shipping.json');
+const taxrates = require('./data/taxrates.json');
 
 const calculateOrderAmount = (items, shipping, state) => {
     const totalAmount = items.reduce((total, item) => {
