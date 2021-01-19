@@ -7,8 +7,8 @@ import Layout from "../components/layout/layout"
 import SEO from "../components/seo"
 
 const Checkout = ({ location }) => {
-  const promise = loadStripe(process.env.STRIPE_PUBLIC_KEY);
-console.log(promise)
+  const promise = loadStripe(process.env.STRIPE_PUBLIC_KEY)
+  console.log(process.env.STRIPE_PUBLIC_KEY)
   return (
     <Layout location={location}>
       <SEO title="Checkout" />
