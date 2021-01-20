@@ -62,7 +62,12 @@ const Product = ({ data, location }) => {
               window.ApplePaySession.canMakePayments() && (
                 <>
                   <h1>ApplePay Button goes here</h1>
-                  <div className="apple-pay-button apple-pay-button-black"></div>
+                  <div
+                    className={[
+                      styles.applePayButton,
+                      styles.applePayButtonBlack,
+                    ].join(" ")}
+                  ></div>
                 </>
               )}
             <AddToCart
