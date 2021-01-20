@@ -60,15 +60,46 @@ const Product = ({ data, location }) => {
             {typeof window !== `undefined` &&
               window.ApplePaySession &&
               window.ApplePaySession.canMakePayments() && (
-                <>
-                  <h1>ApplePay Button goes here</h1>
                   <div
                     className={[
                       styles.applePayButton,
                       styles.applePayButtonBlack,
                     ].join(" ")}
-                  ></div>
-                </>
+                    onClick={() => {
+                      var request = {
+                        countryCode: "US",
+                        currencyCode: "USD",
+                        supportedNetworks: [
+                          "visa",
+                          "masterCard",
+                          "amex",
+                          "discover",
+                        ],
+                        merchantCapabilities: ["supports3DS"],
+                        total: { label: "Your Merchant Name", amount: "10.00" },
+                      }
+                      var session = new window.ApplePaySession(3, request);
+                      console.log(session);
+                      // window
+                      //   .fetch("/.netlify/functions/mollie-checkout", {
+                      //     method: "POST",
+                      //     headers: {
+                      //       "Content-Type": "application/json",
+                      //     },
+                      //     body: JSON.stringify({
+                      //       items,
+                      //       shipping: shippingValues.shipping,
+                      //       state: shippingValues.provinceTerritory,
+                      //     }),
+                      //   })
+                      //   .then(res => {
+                      //     return res.json()
+                      //   })
+                      //   .then(body => {
+                      //     console.log(body)
+                      //   })
+                    }}
+                  />
               )}
             <AddToCart
               title={productData.title}
