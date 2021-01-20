@@ -79,6 +79,7 @@ const Product = ({ data, location }) => {
                         total: { label: "Your Merchant Name", amount: "10.00" },
                       }
                       var session = new window.ApplePaySession(3, request);
+                      session.begin();
                       console.log(session);
                       // window
                       //   .fetch("/.netlify/functions/mollie-checkout", {
