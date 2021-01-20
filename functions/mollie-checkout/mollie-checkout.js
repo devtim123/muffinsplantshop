@@ -10,12 +10,13 @@ const mollieClient = createMollieClient({
 const createPayment = async () => {
   try {
     const payment = await mollieClient.payments.create({
+      method: "paypal",
       amount: {
         currency: "EUR",
         value: "10.00", // You must send the correct number of decimals, thus we enforce the use of strings
       },
       description: "My first payment",
-      redirectUrl: "https://webshop.example.org/order/12345/",
+      redirectUrl: "http://localhost:8888/success/",
       webhookUrl: "https://webshop.example.org/payments/webhook/",
       metadata: {
         order_id: "12345",

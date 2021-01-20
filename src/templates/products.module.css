@@ -1,3 +1,20 @@
+/* CSS */
+.apple-pay-button {
+    display: inline-block;
+    -webkit-appearance: -apple-pay-button;
+    -apple-pay-button-type: donate; /* Use any supported button type. */
+}
+.apple-pay-button-black {
+    -apple-pay-button-style: black;
+}
+.apple-pay-button-white {
+    -apple-pay-button-style: white;
+}
+.apple-pay-button-white-with-line {
+    -apple-pay-button-style: white-outline;
+}
+
+
 .products__container {
     padding: 1rem;
 }
@@ -33,7 +50,7 @@
     border: 0;
     height: 1px;
     width: 1px;
-    overflow: hidden;    
+    overflow: hidden;
 }
 
 .products__sizeOption + label {

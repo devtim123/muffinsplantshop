@@ -1,5 +1,6 @@
 ---
 contentType: "page"
+title: "abouuu2"
 page: 'about'
 ---
 Muffin's Plants is an e-commerce demo site made by **[Nancy Huynh](https://nancyhuynh.com)**
