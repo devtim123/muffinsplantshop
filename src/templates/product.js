@@ -57,12 +57,14 @@ const Product = ({ data, location }) => {
             {numeral(priceSize.price).format("$0,0.00")}
           </p>
           <div className={styles.products__addToCartButtonWrapper}>
-            {window.ApplePaySession && window.ApplePaySession.canMakePayments() && (
-              <>
-                <h1>ApplePay Button goes here</h1>
-                <div className="apple-pay-button apple-pay-button-black"></div>
-              </>
-            )}
+            {typeof window !== `undefined` &&
+              window.ApplePaySession &&
+              window.ApplePaySession.canMakePayments() && (
+                <>
+                  <h1>ApplePay Button goes here</h1>
+                  <div className="apple-pay-button apple-pay-button-black"></div>
+                </>
+              )}
             <AddToCart
               title={productData.title}
               price={priceSize.price}
