@@ -60,47 +60,52 @@ const Product = ({ data, location }) => {
             {typeof window !== `undefined` &&
               window.ApplePaySession &&
               window.ApplePaySession.canMakePayments() && (
-                  <div
-                    className={[
-                      styles.applePayButton,
-                      styles.applePayButtonBlack,
-                    ].join(" ")}
-                    onClick={() => {
-                      var request = {
-                        countryCode: "US",
-                        currencyCode: "USD",
-                        supportedNetworks: [
-                          "visa",
-                          "masterCard",
-                          "amex",
-                          "discover",
-                        ],
-                        merchantCapabilities: ["supports3DS"],
-                        total: { label: "Your Merchant Name", amount: "10.00" },
-                      }
-                      var session = new window.ApplePaySession(3, request);
-                      session.begin();
-                      console.log(session);
-                      // window
-                      //   .fetch("/.netlify/functions/mollie-checkout", {
-                      //     method: "POST",
-                      //     headers: {
-                      //       "Content-Type": "application/json",
-                      //     },
-                      //     body: JSON.stringify({
-                      //       items,
-                      //       shipping: shippingValues.shipping,
-                      //       state: shippingValues.provinceTerritory,
-                      //     }),
-                      //   })
-                      //   .then(res => {
-                      //     return res.json()
-                      //   })
-                      //   .then(body => {
-                      //     console.log(body)
-                      //   })
-                    }}
-                  />
+                <div
+                  className={[
+                    styles.applePayButton,
+                    styles.applePayButtonBlack,
+                  ].join(" ")}
+                  onClick={() => {
+                    var request = {
+                      countryCode: "US",
+                      currencyCode: "USD",
+                      supportedNetworks: [
+                        "visa",
+                        "masterCard",
+                        "amex",
+                        "discover",
+                      ],
+                      merchantCapabilities: ["supports3DS"],
+                      total: { label: "Your Merchant Name", amount: "10.00" },
+                    }
+                    var session = new window.ApplePaySession(3, request)
+                    session.begin()
+
+                    session.onvalidatemerchant = event => {
+                      var validationURL = event.validationURL
+                      console.log(validationURL)
+                      window
+                        .fetch("/.netlify/functions/applepay-checkout", {
+                          method: "POST",
+                          headers: {
+                            "Content-Type": "application/json",
+                          },
+                          body: JSON.stringify({
+                            validationURL,
+                          }),
+                        })
+                        .then(res => {
+                          const resJson = res.json()
+                          console.log(resJson)
+                          session.completeMerchantValidation(resJson)
+                        })
+                    }
+
+                    session.onpaymentauthorized = event => {
+                      //@todo
+                    }
+                  }}
+                />
               )}
             <AddToCart
               title={productData.title}

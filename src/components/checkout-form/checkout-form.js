@@ -689,27 +689,8 @@ const CheckoutForm = () => {
       size: item.size,
     }))
 
-    window
-      .fetch("/.netlify/functions/mollie-checkout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          items,
-          shipping: shippingValues.shipping,
-          state: shippingValues.provinceTerritory,
-        }),
-      })
-      .then(res => {
-        return res.json();
-      })
-      .then(body => {
-        console.log(body);
-      })
-
     // window
-    //   .fetch("/.netlify/functions/stripe-checkout", {
+    //   .fetch("/.netlify/functions/mollie-checkout", {
     //     method: "POST",
     //     headers: {
     //       "Content-Type": "application/json",
@@ -723,9 +704,28 @@ const CheckoutForm = () => {
     //   .then(res => {
     //     return res.json()
     //   })
-    //   .then(data => {
-    //     setClientSecret(data.clientSecret)
+    //   .then(body => {
+    //     console.log(body)
     //   })
+
+    window
+      .fetch("/.netlify/functions/stripe-checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          items,
+          shipping: shippingValues.shipping,
+          state: shippingValues.provinceTerritory,
+        }),
+      })
+      .then(res => {
+        return res.json()
+      })
+      .then(data => {
+        setClientSecret(data.clientSecret)
+      })
   }, [section, shippingValues, cart])
 
   return (
