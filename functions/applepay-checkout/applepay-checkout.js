@@ -31,7 +31,7 @@ exports.handler = async function (event) {
       },
       {
         headers: {
-          Authorization: `Basic test_Ruc8KEWFTt4984raVWw7gcyys9g2cE`,
+          Authorization: `Bearer test_Ruc8KEWFTt4984raVWw7gcyys9g2cE`,
         },
       }
     )
