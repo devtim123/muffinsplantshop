@@ -4,7 +4,6 @@ import { useCartContext } from "../../../wrap-with-provider"
 import { CartButton, Cart } from "../shopping-cart/shopping-cart"
 import PromoBar from "../promo-bar/promo-bar"
 import styles from "./layout.module.css"
-import Typography from "../../utils/typography"
 
 const Layout = ({ children, location }) => {
   const path = location.pathname
@@ -20,10 +19,6 @@ const Layout = ({ children, location }) => {
 
   const [isOpenMenu, setIsOpenMenu] = useState(false)
   const { isOpenCart } = useCartContext()
-
-  useEffect(() => {
-    Typography.injectStyles()
-  }, [])
 
   useEffect(() => {
     if (isOpenCart) {
