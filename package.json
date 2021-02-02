@@ -11,7 +11,8 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "jest"
+    "test": "jest",
+    "locally": "node -e \"console.log(require('./functions/applepay-checkout/applepay-checkout.js').handler({}));\""
   },
   "dependencies": {
     "@mollie/api-client": "^3.4.0",
